@@ -20,12 +20,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # create some structure and modify permissions
 RUN mkdir /dump
-RUN chmod 777 -R /dump
-RUN chmod 777 -R /var/www/html
-
 
 # some final configurations
 RUN rm /var/www/html/index.html
+ADD config/my.cnf /etc/mysql/mariadb.conf.d/60-my.cnf
 
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
