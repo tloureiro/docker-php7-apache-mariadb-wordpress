@@ -15,8 +15,12 @@ RUN echo "/usr/bin/original_wp --allow-root \"\$@\"" > /usr/bin/wp
 RUN chmod +x /usr/bin/wp
 RUN alias wp='wp --allow-root'
 
+# composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# nvm / node
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+RUN /bin/bash -c "source ~/.nvm/nvm.sh && nvm install node"
 
 # create some structure and modify permissions
 RUN mkdir /dump
