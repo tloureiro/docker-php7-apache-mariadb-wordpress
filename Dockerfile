@@ -33,6 +33,8 @@ RUN chmod +x /usr/bin/createwp
 RUN rm /var/www/html/index.html
 ADD config/my.cnf /etc/mysql/mariadb.conf.d/60-my.cnf
 
+RUN a2enmod rewrite
+
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 WORKDIR /var/www/html/
