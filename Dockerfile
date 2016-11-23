@@ -25,6 +25,10 @@ RUN /bin/bash -c "source ~/.nvm/nvm.sh && nvm install node"
 # create some structure and modify permissions
 RUN mkdir /dump
 
+# Add wp creation script
+COPY createwp /usr/bin/createwp
+RUN chmod +x /usr/bin/createwp
+
 # some final configurations
 RUN rm /var/www/html/index.html
 ADD config/my.cnf /etc/mysql/mariadb.conf.d/60-my.cnf
