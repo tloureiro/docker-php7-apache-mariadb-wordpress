@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      
+  lampp_a:
+    image: lampp2017
+  
+    volumes:
+      - ./wordpress_a:/var/www/html
+      - ./mysql_a:/var/lib/mysql
+      - ./dump_a:/dump
+    environment:
+      - VIRTUAL_HOST=wpa.local      
+
+
+  lampp_b:
+    image: lampp2017
+  
+    volumes:
+      - ./wordpress_b:/var/www/html
+      - ./mysql_b:/var/lib/mysql
+      - ./dump_b:/dump
+    environment:
+      - VIRTUAL_HOST=wpb.local
