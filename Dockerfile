@@ -6,7 +6,7 @@ RUN apt-get install -y curl git nano less bash git bash-completion
 RUN apt-get install -y apache2 mariadb-server imagemagick
 RUN apt-get install -y php7.0*
 RUN apt-get remove -y  php7.0-snmp 
-RUN apt-get install -y libapache2-mod-php7.0 pkg-config libmagickwand-dev libmagickcore-dev mcrypt supervisor
+RUN apt-get install -y libapache2-mod-php7.0 pkg-config libmagickwand-dev libmagickcore-dev mcrypt supervisor php-xdebug
 
 # custom installs
 RUN curl -o /usr/bin/original_wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -36,6 +36,8 @@ ADD config/my.cnf /etc/mysql/mariadb.conf.d/60-my.cnf
 # apache configs
 ADD config/000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
+ADD config/xdebug.ini /etc/php/7.0/apache2/conf.d/30-xdebug.ini
+
 
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
