@@ -32,6 +32,7 @@ RUN chmod +x /usr/bin/createwp
 # some final configurations
 RUN rm /var/www/html/index.html
 ADD config/my.cnf /etc/mysql/mariadb.conf.d/60-my.cnf
+RUN echo 'umask 0000' >> ~/.bashrc
 
 # apache configs
 ADD config/000-default.conf /etc/apache2/sites-available/000-default.conf

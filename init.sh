@@ -1,5 +1,7 @@
 #!/bin/bash
 
+umask 0000;
+
 mysql_install_db;
 
 mysql -uroot -e "CREATE USER 'admin'@'%' IDENTIFIED BY 'admin'";
