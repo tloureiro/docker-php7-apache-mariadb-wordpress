@@ -6,7 +6,7 @@ RUN apt-get install -y curl git nano less bash git bash-completion
 RUN apt-get install -y apache2 mariadb-server imagemagick
 RUN apt-get install -y php7.0*
 RUN apt-get remove -y  php7.0-snmp 
-RUN apt-get install -y libapache2-mod-php7.0 pkg-config libmagickwand-dev libmagickcore-dev mcrypt supervisor php-xdebug
+RUN apt-get install -y libapache2-mod-php7.0 pkg-config libmagickwand-dev libmagickcore-dev mcrypt supervisor php-xdebug phpunit
 
 # custom installs
 RUN curl -o /usr/bin/original_wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
