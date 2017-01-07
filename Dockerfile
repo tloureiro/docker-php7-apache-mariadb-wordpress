@@ -6,7 +6,7 @@ RUN apt-get install -y curl git nano less bash git bash-completion
 RUN apt-get install -y apache2 mariadb-server imagemagick
 RUN apt-get install -y php7.0*
 RUN apt-get remove -y  php7.0-snmp 
-RUN apt-get install -y libapache2-mod-php7.0 pkg-config libmagickwand-dev libmagickcore-dev mcrypt supervisor php-xdebug phpunit
+RUN apt-get install -y libapache2-mod-php7.0 pkg-config libmagickwand-dev libmagickcore-dev mcrypt supervisor php-xdebug phpunit apt-transport-https
 
 # custom installs
 RUN curl -o /usr/bin/original_wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -21,6 +21,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # nvm / node
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
 RUN /bin/bash -c "source ~/.nvm/nvm.sh && nvm install node"
+
+# yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update
+RUN apt-get install -y yarn
 
 # create some structure and modify permissions
 RUN mkdir /dump
